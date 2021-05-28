@@ -16,7 +16,7 @@ bot.onText(/\/start/, (msg) => {
     bot.sendMessage(
         msg.chat.id,
         `hello ${msg.chat.first_name}, welcome...\n
-        click /Predict`
+        click /predict`
     );   
 });
 
@@ -44,7 +44,7 @@ bot.on('message', (msg) => {
             bot.sendMessage(
                 msg.chat.id,
                 'nilai v yang diprediksi adalah ${jres[0]} volt'
-                );
+            );
             bot.sendMessage(
                 msg.chat.id,
                 'nilai p yang diprediksi adalah ${jres[1]} watt'
