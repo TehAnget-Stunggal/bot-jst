@@ -32,6 +32,7 @@ bot.onText(/\/predict/, (msg) => {
 
 bot.on('message', (msg) => {
     if(state == 1){
+        console.log(msg.text);
         s = msg.text.split("|");
         i = s[0]
         v = s[1]
