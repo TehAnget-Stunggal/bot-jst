@@ -3,7 +3,7 @@ var r = express.Router();
 
 // load pre-trained model
 const model = require('./sdk/model.js'); // predict
-const cls_model = require('./sdk/model.js'); // cls
+const cls_model = require('./sdk/cls_model.js'); // cls
 
 // Bot Setting
 const TelegramBot = require('node-telegram-bot-api');
@@ -39,7 +39,7 @@ bot.on('message', (msg) => {
                 parseFloat(s[1])
             ]
         ).then((jres1)=>{
-            console.log(msg.text);
+            console.log(jres1);
             
             cls_model.classify([parseFloat(s[0]), parseFloat(s[1]), parseFloat(jres1[0]), parseFloat(jres[1])]).then((jres2)=>{
                 bot.sendMessage(
@@ -53,7 +53,7 @@ bot.on('message', (msg) => {
             bot.sendMessage(
                     msg.chat.id,
                     `Klasifikasi Tegangan ${jres2}`
-            };
+            );
             state = 0;
           })
        })
@@ -67,7 +67,7 @@ bot.on('message', (msg) => {
 })
 
 // routers
-r.get('/prediction/:i/:r', function(req, res, next) {    
+r.get('/predict/:i/:r', function(req, res, next) {    
     model.predict(
         [
             parseFloat(req.params.i), // string to float
